@@ -29,14 +29,16 @@ function displayMovies(movies) {
 
 // Fonction pour charger les films populaires
 async function loadDiscoverMovies() {
-    const movies = await tmdbApi.discoverMovies(currentPage);
+    const { movies, total_pages } = await tmdbApi.discoverMovies(currentPage);
+    totalPages = total_pages; // Met à jour le nombre total de pages
     displayMovies(movies);
     updatePagination();  // Mettre à jour la pagination
 }
 
 // Fonction pour rechercher des films
 async function searchMovies(query) {
-    const movies = await tmdbApi.searchMovies(query, currentPage);
+    const { movies, total_pages } = await tmdbApi.searchMovies(query, currentPage);
+    totalPages = total_pages; // Met à jour le nombre total de pages
     displayMovies(movies);
     updatePagination();  // Mettre à jour la pagination
 }
